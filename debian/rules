@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_auto_build:
+	phpab --output src/autoload.php src
+
+override_dh_auto_test:
+	phpunit --bootstrap src/autoload.php
+
+override_dh_installchangelogs:
+	dh_installchangelogs $(CURDIR)/debian/upstream/changelog
